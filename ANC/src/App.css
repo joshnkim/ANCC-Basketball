@@ -40,3 +40,115 @@
 .read-the-docs {
   color: #888;
 }
+
+
+body {
+  background-color: rgb(199, 226, 250);
+  background-size: cover;
+}
+
+.app {
+  display: block;
+
+  min-width: 100vh;
+
+  min-height: 100vh;
+  margin: 0;
+}
+
+
+.header {
+  color: black;
+  font-family: "Pacifico", cursive;
+  margin-bottom: 80px;
+  font-size: 40px;
+}
+
+
+
+
+
+
+.button-container {
+  margin-top: 70px;
+  margin-bottom: 30px;
+  margin-left: 240px;
+}
+
+.homebuttons {
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: repeat(
+    4,1fr
+  );
+  grid-template-rows: (2, auto);
+  align-items: center;  
+  gap: 40px;            
+  margin-top: 10px;    
+}
+
+
+.homebuttons button {
+  margin-top: 70px;
+  width: 200px;         
+  padding: 10px 20px;   
+  font-family: "Pacifico", cursive;
+  font-weight: 10px; 
+  font-size: 16px;
+  text-align: center;
+  text-align: center;
+  border: none;
+  border-radius: 6px;    
+  background-color: rgb(152, 176, 255);
+  color: white;
+  cursor: pointer;
+  
+}
+
+.homebuttons button:hover {
+  background-color: rgb(117, 149, 255);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.table-outer {
+  width: 100%;
+  overflow-x: auto;        /* allows horizontal scroll */
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.711);
+  background-color: rgb(144, 203, 255);;
+  margin-bottom: 60px;
+  display: flex;           /* center table horizontally */
+  justify-content: center;
+  padding: 20px 0;         /* optional top/bottom padding */
+}
+
+.table-container {
+  min-width: 1200px;       /* ensures table never shrinks below this width */
+  margin: 0 20px;
+}
+
+.table {
+  width: 1200px;           /* fixed table width */
+  border-collapse: collapse; /* keep cells tight */
+  background-color: rgb(144, 203, 255);
+  font-family: "Commissioner", sans-serif;
+  color: black;
+  border-radius: 12px;     /* optional: rounded corners for table itself */
+}
+
+.table th,
+.table td {
+  padding: 10px 15px;      /* space inside cells only */
+  text-align: left;
+  white-space: nowrap;      /* prevents wrapping */
+}

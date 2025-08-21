@@ -8,6 +8,10 @@ import ViewStatsPage from './pages/ViewStatsPage'
 import ViewTeamsPage from './pages/ViewTeamsPage'
 import './App.css'
 
+
+const backendPort = 3000;
+const backendURL = `http://localhost:${backendPort}`;
+//const backendURL = `http://18.117.218.170:${backendPort}`;
 function App() {
 
 
@@ -18,11 +22,11 @@ function App() {
           <Header />
           <div className='content'>
             <Routes>
-              <Route path='/' element={<HomePage />} />
-              <Route path='/players' element={<ViewPlayersPage />} />
-              <Route path='/games' element={<ViewGamesPage />} />
-              <Route path='/stats' element={<ViewStatsPage />} />
-              <Route path='/teams' element={<ViewTeamsPage />} />
+            <Route path='/' element={<HomePage backendURL={backendURL} />} />
+            <Route path='/players' element={<ViewPlayersPage backendURL={backendURL} />} />
+            <Route path='/games' element={<ViewGamesPage backendURL={backendURL} />} />
+            <Route path='/stats' element={<ViewStatsPage backendURL={backendURL} />} />
+            <Route path='/teams' element={<ViewTeamsPage backendURL={backendURL} />} />
             </Routes>
           </div>
         </div>

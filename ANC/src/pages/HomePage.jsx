@@ -9,7 +9,6 @@ function HomePage() {
             <div className="page-content">
                 <div className="button-container">
                     <div className="homebuttons">
-                        <button id="ViewTeams" type="button" onClick={() => navigate('/teams')}>View Teams</button>
                         <button id="ViewPlayers" type="button" onClick={() => navigate('/players')}>View Players</button>
                         <button id="ViewGames" type="button" onClick={() => navigate('/games')}>View Games</button>
                         <button id="ViewStats" type="button" onClick={() => navigate('/stats')}>View Stats</button>

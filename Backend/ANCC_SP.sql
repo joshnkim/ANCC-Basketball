@@ -11,10 +11,10 @@ CREATE PROCEDURE sp_getTeams()
 BEGIN
     SELECT 
         Players.PlayerID,
-        Players.PlayerName,
+        Players.PlayerName AS 'Name',
         Players.Gender, 
-        Players.PlayerNo,
-        Teams.TeamName
+        Players.PlayerNo AS 'Number',
+        Teams.TeamName AS 'Team'
     FROM Players
     LEFT JOIN PlayerTeams ON PlayerTeams.PlayerID = Players.PlayerID 
     LEFT JOIN Teams ON Teams.TeamID = PlayerTeams.TeamID;
