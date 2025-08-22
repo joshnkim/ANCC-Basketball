@@ -7,6 +7,7 @@ import ViewGamesPage from './pages/ViewGamesPage'
 import StatsPage from './pages/StatsPage'
 import ViewStatsPage from './pages/ViewStatsPage'
 import ViewPlayerStatsPage from './pages/ViewPlayerStatsPage'
+import ViewStatsByGamePage from './pages/ViewStatsByGamePage'
 import ViewTeamsPage from './pages/ViewTeamsPage'
 import CreatePlayerPage from './pages/CreatePlayerPage'
 import CreateTeamPage from './pages/CreateTeamPage'
@@ -34,6 +35,7 @@ function App() {
             <Route path='/stats' element={<StatsPage backendURL={backendURL} />} />
             <Route path='/all_stats' element={<ViewStatsPage backendURL={backendURL} />} />
             <Route path='/player_stats' element={<ViewPlayerStatsPage backendURL={backendURL} />} />
+            <Route path='/game_stats' element={<ViewStatsByGamePage backendURL={backendURL} />} />
             <Route path='/teams' element={<ViewTeamsPage backendURL={backendURL} />} />
             <Route path='/create_player' element={<CreatePlayerPage backendURL={backendURL} />} />
             <Route path='/create_team' element={<CreateTeamPage backendURL={backendURL} />} />

@@ -48,7 +48,9 @@ BEGIN
         Games.GameID, 
         DATE_FORMAT(Games.GameDate, '%Y-%m-%d') AS 'Date',
         TeamA.TeamName AS 'Team A', 
+        Games.ScoreA AS 'Team A Score',
         TeamB.TeamName AS 'Team B', 
+        Games.ScoreB AS 'Team B Score',
         Games.Category, 
         TeamWinner.TeamName AS Winner
     FROM Games
@@ -132,11 +134,11 @@ BEGIN
         (SUM(Stats.FTM) / SUM(Stats.FTA)) AS 'FT%',
         ((SUM(Stats.TwoPM) + SUM(Stats.ThreePM)) / (SUM(Stats.TwoPA) + SUM(Stats.ThreePA))) AS 'FG%',
         (SUM(Stats.ThreePM) / SUM(Stats.ThreePA)) AS '3P%',
-        SUM(Stats.Rebounds) AS 'REB',
-        SUM(Stats.Assists) AS 'AST',
-        SUM(Stats.Steals) AS 'STL',
-        SUM(Stats.Fouls) AS 'PF',
-        SUM(Stats.Turnovers) AS 'TO',
+        (SUM(Stats.Rebounds) / COUNT(Stats.GameID)) AS 'REB',
+        (SUM(Stats.Assists) / COUNT(Stats.GameID)) AS 'AST',
+        (SUM(Stats.Steals) / COUNT(Stats.GameID)) AS 'STL',
+        (SUM(Stats.Fouls) / COUNT(Stats.GameID)) AS 'PF',
+        (SUM(Stats.Turnovers) / COUNT(Stats.GameID)) AS 'TO',
         (SUM(Stats.FTM) + SUM(Stats.TwoPM) + SUM(Stats.ThreePA)) AS 'Total Pts'
         
         FROM Stats 

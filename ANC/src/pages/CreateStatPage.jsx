@@ -73,13 +73,7 @@ const CreateStatsByTeamPage = ({ backendURL }) => {
   useEffect(() => { fetchPlayersForTeam(teamAID, setTeamAStats); }, [teamAID, selectedGameID]);
   useEffect(() => { fetchPlayersForTeam(teamBID, setTeamBStats); }, [teamBID, selectedGameID]);
 
-  const updateStat = (team, playerID, stat, delta) => {
-    const setter = team === "A" ? setTeamAStats : setTeamBStats;
-    const stats = team === "A" ? teamAStats : teamBStats;
-    setter(stats.map((p) =>
-      p.PlayerID === playerID ? { ...p, [stat]: Math.max(0, p[stat] + delta) } : p
-    ));
-  };
+
 
   const handleSubmit = async () => {
     if (!selectedGameID) {
@@ -125,6 +119,44 @@ const CreateStatsByTeamPage = ({ backendURL }) => {
     "Turnovers",
   ];
 
+  const [totalpointsA, setTotalPointsA] = useState(0)
+  const [totalfoulsA, setTotalFoulsA] = useState(0) 
+  const [totalpointsB, setTotalPointsB] = useState(0)
+  const [totalfoulsB, setTotalFoulsB] = useState(0) 
+
+  const updateStat = (team, playerID, stat, delta) => {
+    const setter = team === "A" ? setTeamAStats : setTeamBStats;
+    const stats = team === "A" ? teamAStats : teamBStats;
+    setter(stats.map((p) =>
+      p.PlayerID === playerID ? { ...p, [stat]: Math.max(0, p[stat] + delta) } : p
+    ));
+
+    if (stat === "FTM" && team === "A") {
+      setTotalPointsA(prev => prev + delta)
+    } else if (stat === "FTM" && team === "B") {
+      setTotalPointsB(prev => prev + delta)
+    }
+
+    if (stat === "TwoPM" && team === "A") {
+      setTotalPointsA(prev => prev + (2*delta)) //delta being how many clicks
+    } else if (stat === "ThreePM" && team === "A") {
+      setTotalPointsA(prev => prev + (3*delta))
+    }
+
+    if (stat === "TwoPM" && team === "B") {
+      setTotalPointsB(prev => prev + (2*delta)) 
+    } else if (stat === "ThreePM" && team === "B") {
+      setTotalPointsB(prev => prev + (3*delta))
+    }
+
+
+    if (stat === "Fouls" && team === "A") {
+      setTotalFoulsA(prev => prev + delta) 
+    } else if (stat === "Fouls" && team === "B") {
+      setTotalFoulsB(prev => prev + delta) 
+    }
+  };
+
   const cellRenderer = (team) => (row, col) => {
     if (col === "Name") return row.PlayerName;
     if (col === "Number") return row.Number ?? "-";
@@ -136,6 +168,8 @@ const CreateStatsByTeamPage = ({ backendURL }) => {
       </div>
     );
   };
+
+
 
   return (
   <>
@@ -198,14 +232,18 @@ const CreateStatsByTeamPage = ({ backendURL }) => {
         {/* Stats Tables */}
         {teamAStats.length > 0 && (
           <>
-            <h3 className="manageLabel">Team A Stats</h3>
+            <h3 className="manageLabel1">Team A Stats</h3>
+            <p className="pointbox">Total Points: {totalpointsA}</p>
+            <p className="pointbox">Total Fouls: {totalfoulsA}</p>
             <Table columns={statColumns} data={teamAStats} cellRenderer={cellRenderer("A")} />
           </>
         )}
 
         {teamBStats.length > 0 && (
           <>
-            <h3 className="manageLabel">Team B Stats</h3>
+            <h3 className="manageLabel1">Team B Stats</h3>
+            <p className="pointbox">Total Points: {totalpointsB}</p>
+            <p className="pointbox">Total Fouls: {totalfoulsB}</p>
             <Table columns={statColumns} data={teamBStats} cellRenderer={cellRenderer("B")} />
           </>
         )}

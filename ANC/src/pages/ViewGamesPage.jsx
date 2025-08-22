@@ -20,7 +20,7 @@ function ViewGamesPage ({backendURL}) {
         getGames();
     }, [])
 
-    const columns = ['GameID', 'Date', 'Team A', 'Team B', 'Category', 'Winner']
+    const columns = ['GameID', 'Date', 'Team A', 'Team A Score', 'Team B', 'Team B Score', 'Category', 'Winner']
 
 
     return (

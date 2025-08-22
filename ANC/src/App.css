@@ -111,10 +111,47 @@ body {
   
 }
 
+
 .homebuttons button:hover {
   background-color: rgb(117, 149, 255);
 }
 
+
+
+.homebuttons1 {
+  margin-top: 160px;
+  display: grid;
+  grid-template-columns: repeat(
+    3,1fr
+  );
+  grid-template-rows: (1, auto);
+  align-items: center;  
+  gap: 40px;            
+  margin-top: 10px; 
+  margin-left: 10px;   
+}
+
+
+.homebuttons1 button {
+  margin-top: 70px;
+  width: 200px;         
+  padding: 10px 20px;   
+  font-family: "Commissioner", sans-serif;;
+  font-weight: 10px; 
+  font-size: 16px;
+  text-align: center;
+  text-align: center;
+  border: none;
+  border-radius: 6px;    
+  background-color: rgba(152, 176, 255, 0.608);
+  color: white;
+  cursor: pointer;
+  
+}
+
+.homebuttons1 button:hover {
+  background-color: rgb(117, 149, 255);
+}
 
 .footer {
   font-family: "Commissioner", sans-serif;;
@@ -252,6 +289,18 @@ p {
   font-family: "Commissioner", sans-serif;  
   margin-bottom: 2px;
 
+}
+
+.manageLabel1 {
+  color: black;
+  font-family: 'Bangers', system-ui;  
+  margin-bottom: -10px;
+  font-size: 30px;
+}
+
+.pointbox {
+  margin-bottom: 0;
+  font-family: 'Bangers', system-ui;   
 }
 
 .cuForm {
