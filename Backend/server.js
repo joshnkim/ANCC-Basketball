@@ -73,17 +73,41 @@ app.get('/', (req, res) => {
 // Get All Players 
 app.get('/players', async (req, res) => {
     try {
-        const sql = 'CALL sp_getTeams()'; 
+        const sql = 'CALL sp_getPlayers()'; 
         const [rows] = await db.query(sql)
 
         res.status(200).json(rows[0]);
 
     } catch (err) {
-        console.error('Error getting teams:', err);
+        console.error('Error getting players:', err);
         res.status(500).json({message: 'Internal server error.'});
     }
 }); 
-// Get All Teams Works  --------------------------------------------------------------------------------------------------------
+// Get All Players Works  --------------------------------------------------------------------------------------------------------
+
+
+// Get players for a specific team
+app.get('/teams/:teamID', async (req, res) => {
+    try {
+      const teamID = parseInt(req.params.teamID);
+      const [rows] = await db.query('CALL sp_getPlayersByTeam(?)', [teamID]);
+      res.status(200).json(rows[0]); // rows[0] contains the result set
+    } catch (err) {
+      console.error('Error getting team players:', err);
+      res.status(500).json({ message: 'Internal server error.' });
+    }
+  });
+  
+  // Get all teams 
+  app.get('/teams', async (req, res) => {
+    try {
+      const [rows] = await db.query("SELECT TeamID, TeamName AS 'Team Name' FROM Teams ORDER BY TeamID");
+      res.status(200).json(rows);
+    } catch (err) {
+      console.error('Error getting teams:', err);
+      res.status(500).json({ message: 'Internal server error.' });
+    }
+  });
 
 
 // Get All Games ---------------------------------------------------------------------------------------------------------------
@@ -214,12 +238,21 @@ app.post('/games', async (req, res) => {
         const {GameDate, Category, GameNo, TeamA_ID, TeamB_ID, ScoreA, ScoreB, WinnerID} = req.body;
 
         // Validation
-        if (!GameDate || !Category || !GameNo || !TeamA_ID || !TeamB_ID || !ScoreA || !ScoreB) {
+        if (!GameDate || !Category || !GameNo || !TeamA_ID || !TeamB_ID || ScoreA == null || ScoreB == null) {
             return res.status(400).json({Message: 'Missing required fields: Game Date, Category, Game Number, Team A ID, Team B ID, Score A or Score B'});
         }
 
         const sql = 'CALL sp_createGame(?, ?, ?, ?, ?, ?, ?, ?)';
-        await db.query(sql, [GameDate, Category, GameNo, TeamA_ID, TeamB_ID, ScoreA, ScoreB, WinnerID || null]);
+        await db.query(sql, [
+            GameDate, 
+            Category, 
+            GameNo, 
+            TeamA_ID, 
+            TeamB_ID, 
+            ScoreA, 
+            ScoreB, 
+            WinnerID !== undefined ? WinnerID : null
+          ]);
 
         res.status(201).json({message: 'Game created successfully'});
 
@@ -234,13 +267,50 @@ app.post('/games', async (req, res) => {
 // Create a New Stat -----------------------------------------------------------------------------------------------------------
 app.post('/stats', async (req, res) => {
     try { 
-        const {GameID, PlayerID, FTA, FTM, TwoPA, TwoPM, ThreePA, ThreePM, Rebounds, Assists, Steals, Fouls, Turnovers} = req.body;
+        const {
+            GameID,
+            PlayerID,
+            teamID, 
+            FTA,
+            FTM,
+            TwoPA,
+            TwoPM,
+            ThreePA,
+            ThreePM,
+            Rebounds,
+            Assists,
+            Steals,
+            Fouls,
+            Turnovers
+        } = req.body;
 
         // Validation
-        if (!GameID || !PlayerID) {
-            return res.status(400).json({Message: 'Missing required fields: Game ID or Player ID'})
+        if (!GameID || (!PlayerID && !teamID)) {
+            return res.status(400).json({Message: 'Missing required fields: Game ID or Player ID / Team ID'});
         }
 
+        if (teamID) {
+            // Fetch all players in the team
+            const [players] = await db.query(
+                'SELECT PlayerID FROM PlayerTeams WHERE TeamID = ?',
+                [teamID]
+            );
+
+            // Create stats for all players in that team
+            await Promise.all(
+                players.map(player => 
+                    db.query('CALL sp_createStat(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+                        GameID,
+                        player.PlayerID,
+                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                    ])
+                )
+            );
+
+            return res.status(201).json({message: 'Stats created for all players in the team'});
+        }
+
+        // Default: create stat for single player
         const sql = 'CALL sp_createStat(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
         await db.query(sql, [
             GameID, 
@@ -265,12 +335,37 @@ app.post('/stats', async (req, res) => {
         res.status(500).json({message: 'Internal server error.'});
     };
 });
+
 // Works -----------------------------------------------------------------------------------------------------------------------
 
 
 
 
+// Update a Game 
+app.patch('/games/:gameID', async (req, res) => {
+    const {Date, Category, GameNo, TeamA_ID, TeamB_ID, ScoreA, ScoreB, WinnerID} = req.body;
 
+    const GameID = req.params.gameID;
+    try {
+        await db.query('CALL sp_updateGame(?, ?, ?, ?, ?, ?, ?, ?, ?)', [
+            GameID,
+            Date,
+            Category,
+            GameNo,
+            TeamA_ID,
+            TeamB_ID,
+            ScoreA,
+            ScoreB,
+            WinnerID
+        ]);
+
+        res.status(200).json({message: 'Game has been updated successfully!'});
+
+    } catch (error) {
+        console.error('Error calling sp_updateGame:', error);
+        res.status(500).send('An error occurred while updating the game.')
+    }
+});
 
 
 

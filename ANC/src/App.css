@@ -43,8 +43,9 @@
 
 
 body {
-  background-color: rgb(199, 226, 250);
+  background-image: url('/ball.jpg'); 
   background-size: cover;
+
 }
 
 .app {
@@ -59,24 +60,29 @@ body {
 
 .header {
   color: black;
-  font-family: "Pacifico", cursive;
+  font-family: 'Bangers', system-ui;
   margin-bottom: 80px;
   font-size: 40px;
 }
 
+.h1_title {
+  color: black;
+  font-family: "Commissioner", sans-serif;;
+  font-size: 50px;
+}
 
 
 
 
 
 .button-container {
-  margin-top: 70px;
+  margin-top: 120px;
   margin-bottom: 30px;
-  margin-left: 240px;
+  margin-left: 20px;
 }
 
 .homebuttons {
-  margin-top: 70px;
+  margin-top: 160px;
   display: grid;
   grid-template-columns: repeat(
     4,1fr
@@ -89,17 +95,17 @@ body {
 
 
 .homebuttons button {
-  margin-top: 70px;
+  margin-top: 30px;
   width: 200px;         
   padding: 10px 20px;   
-  font-family: "Pacifico", cursive;
+  font-family: "Commissioner", sans-serif;;
   font-weight: 10px; 
   font-size: 16px;
   text-align: center;
   text-align: center;
   border: none;
   border-radius: 6px;    
-  background-color: rgb(152, 176, 255);
+  background-color: rgba(152, 176, 255, 0.608);
   color: white;
   cursor: pointer;
   
@@ -110,6 +116,22 @@ body {
 }
 
 
+.footer {
+  font-family: "Commissioner", sans-serif;;
+  font-weight: 10px; 
+  font-size: 16px;
+  text-align: center;
+  text-align: center;
+  border: none;
+  border-radius: 6px;    
+  color: black;
+  cursor: pointer;
+}
+
+.footer button {
+  background-color: rgb(152, 176, 255);
+  color: black;
+}
 
 
 
@@ -122,33 +144,167 @@ body {
 
 .table-outer {
   width: 100%;
-  overflow-x: auto;        /* allows horizontal scroll */
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.711);
-  background-color: rgb(144, 203, 255);;
+  background-color: rgba(144, 203, 255, 0.729);
   margin-bottom: 60px;
-  display: flex;           /* center table horizontally */
+  display: flex;           
   justify-content: center;
-  padding: 20px 0;         /* optional top/bottom padding */
+  padding: 20px 0;
 }
 
 .table-container {
-  min-width: 1200px;       /* ensures table never shrinks below this width */
+  min-width: 1200px;
   margin: 0 20px;
+  max-height: 400px;        /* scroll happens here */
+  overflow-y: auto;         /* vertical scroll */
+  overflow-x: auto;         /* horizontal scroll */
 }
 
 .table {
-  width: 1200px;           /* fixed table width */
-  border-collapse: collapse; /* keep cells tight */
-  background-color: rgb(144, 203, 255);
+  width: 1200px;
+  border-collapse: collapse;
+  border-spacing: 0;
+  background-color: rgba(144, 203, 255, 0);
   font-family: "Commissioner", sans-serif;
   color: black;
-  border-radius: 12px;     /* optional: rounded corners for table itself */
 }
 
 .table th,
 .table td {
-  padding: 10px 15px;      /* space inside cells only */
+  padding: 10px 15px;
   text-align: left;
-  white-space: nowrap;      /* prevents wrapping */
+  white-space: nowrap;
+}
+
+.table thead {
+  border-radius: 12px;
+}
+
+.table thead th {
+  position: sticky;
+  top: 0;                 
+  background-color: rgb(144, 203, 255);
+  z-index: 2;
+  gap: 5px;
+}
+
+.table thead th:first-child {
+  border-top-left-radius: 12px; /* top-left corner */
+  border-bottom-left-radius: 12px;
+}
+
+.table thead th:last-child {
+  border-top-right-radius: 12px; /* top-right corner */
+  border-bottom-right-radius: 12px;
+}
+
+p {
+  color: black;
+}
+
+.tableButton,
+.tableButton1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 32px;         /* equal width */
+  height: 32px;        /* equal height */
+  border-radius: 50%;  /* circle */
+
+  padding: 0;          /* remove button default padding */
+  margin: 0;
+  line-height: 32px;      /* prevent vertical stretching */
+  font-size: 18px;
+  box-sizing: border-box;
+  border: none;
+  cursor: pointer;
+}
+
+/* Red circle */
+.tableButton {
+  background-color: rgb(249, 150, 150);
+  color: black;
+}
+
+/* Teal circle */
+.tableButton1 {
+  background-color: rgb(150, 249, 219);
+  color: black;
+}
+
+
+
+
+
+
+.createForm {
+  padding-top: 5px;
+  padding-bottom: 80px;
+  border-radius: 12px;
+  background-color: rgba(240, 255, 255, 0.45);
+  margin-bottom: 30px;
+}
+
+.manageLabel {
+  color: black;
+  font-family: "Commissioner", sans-serif;  
+  margin-bottom: 2px;
+
+}
+
+.cuForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  margin: 0 auto;
+  color: black;
+}
+
+/* previous cuform input color 54, 91, 242, 0.386*/
+.cuFormInput {
+  background-color: rgba(143, 194, 255, 0.386);
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.formRow {
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-start;
+}
+
+.text {
+  color: black;
+  font-family: "Commissioner", sans-serif; 
+  display: flex;
+  flex-direction: column;
+
+}
+
+.submit {
+  background-color: rgba(143, 194, 255, 0.386);
+  color: black;
+  border: none;
+  border-radius: 6px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 40px;
+  margin-top: 50px;
+  font-family: "Commissioner", sans-serif; 
+}
+
+.submit:hover {
+  background-color: rgba(26, 129, 255, 0.7);
 }

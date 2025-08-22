@@ -1,4 +1,5 @@
-const Table = ({ columns = [], data = [], children }) => {
+// Table.js
+const Table = ({ columns = [], data = [], cellRenderer }) => {
   if (!Array.isArray(columns) || !Array.isArray(data)) {
     return <div>No data to display</div>;
   }
@@ -19,12 +20,9 @@ const Table = ({ columns = [], data = [], children }) => {
               <tr key={i}>
                 {columns.map((col) => (
                   <td key={col}>
-                    {col === "Date"
-                      ? new Date(row[col]).toLocaleDateString()
-                      : row[col]}
+                    {cellRenderer ? cellRenderer(row, col) : row[col]}
                   </td>
                 ))}
-                {children && <td>{children(row)}</td>}
               </tr>
             ))}
           </tbody>
