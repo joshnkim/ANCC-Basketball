@@ -7,6 +7,7 @@
 const express = require('express');
 const app = express(); 
 const PORT = 3000; //separate from mysql port
+//const HOST = '0.0.0.0'; // comment this out this when not deployed
 const path = require('path'); 
 const fs = require('fs'); 
 
@@ -399,3 +400,4 @@ app.listen(PORT, async function() {
     // await loadFile();
     await loadSP();
 });
+

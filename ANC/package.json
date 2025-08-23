@@ -8,9 +8,15 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "production": "npx forever start reactServer.cjs",
+    "stop_production": "npx forever stop reactServer.cjs"
   },
   "dependencies": {
+    "express": "^4.21.2",
+    "forever": "^4.0.3",
+    "nodemon": "^3.1.10",
+    "path-to-regexp": "^6.3.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.8.1"
