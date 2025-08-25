@@ -16,9 +16,8 @@ import CreateGamePage from './pages/CreateGamePage'
 import './App.css'
 
 
-const backendPort = 3000;
-const backendURL = `http://localhost:${backendPort}`;
-// const backendURL = `http://18.117.218.170:${backendPort}`;
+const backendURL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000';
+
 function App() {
 
 
