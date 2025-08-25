@@ -139,7 +139,7 @@ BEGIN
         (SUM(Stats.Steals) / COUNT(Stats.GameID)) AS 'STL',
         (SUM(Stats.Fouls) / COUNT(Stats.GameID)) AS 'PF',
         (SUM(Stats.Turnovers) / COUNT(Stats.GameID)) AS 'TO',
-        (SUM(Stats.FTM) + SUM(Stats.TwoPM) + SUM(Stats.ThreePA)) AS 'Total Pts'
+        ((SUM(Stats.FTM) + SUM(Stats.TwoPM) + SUM(Stats.ThreePA)) / COUNT(Stats.GameID))AS 'Total Pts'
         
         FROM Stats 
     LEFT JOIN Players ON Stats.PlayerID = Players.PlayerID
@@ -304,4 +304,20 @@ BEGIN
 END;
 
         
+
+-- -----------------------------------------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------------------------------------------------
+-- LOGIN SP --------------------------------------------------------------------------------------------------------------
+
+-- Login User
+DROP PROCEDURE IF EXISTS sp_login;
+CREATE PROCEDURE sp_login(
+    IN loginInput VARCHAR(25)
+)
+BEGIN
+    SELECT * FROM Users WHERE Username = loginInput;
+END;
 

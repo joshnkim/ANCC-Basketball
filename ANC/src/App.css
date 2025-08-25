@@ -128,7 +128,7 @@ body {
   align-items: center;  
   gap: 40px;            
   margin-top: 10px; 
-  margin-left: 10px;   
+  margin-left: 200px;   
 }
 
 
@@ -356,4 +356,42 @@ p {
 
 .submit:hover {
   background-color: rgba(26, 129, 255, 0.7);
+}
+
+
+.modal button {
+  margin-top: 30px;
+  width: 200px;         
+  font-family: "Commissioner", sans-serif;;
+  font-weight: 10px; 
+  font-size: 16px;
+  text-align: center;
+  text-align: center;
+  border: none;
+  border-radius: 6px;    
+  background-color: rgba(23, 67, 121, 0.739);
+  color: white;
+  cursor: pointer;
+  margin-left: 30px;
+}
+
+.forminput {
+  display: flex;
+  flex-direction: row;  
+  gap: 10px; 
+  margin-left: 160px;        
+}
+
+
+.cuFormInput1 {
+  background-color: rgba(23, 67, 121, 0.739);
+  border: none;
+  border-radius: 3px;
+  padding: 5px 10px;
+  width: 300px;
+}
+
+.cuFormInput1::placeholder {
+  color: white;
+  opacity: 1;
 }

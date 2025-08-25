@@ -6,7 +6,7 @@
 // Express
 const express = require('express');
 const app = express(); 
-const PORT = 3000; //separate from mysql port
+const PORT = process.env.PORT || 3000; //separate from mysql port
 //const HOST = '0.0.0.0'; // comment this out this when not deployed
 const path = require('path'); 
 const fs = require('fs'); 
@@ -14,6 +14,8 @@ const fs = require('fs');
 const cors = require('cors');
 app.use(cors( {credentials: true, origin: "*"}));
 app.use(express.json());
+
+
 
 
 // Database
@@ -57,6 +59,45 @@ async function loadSP() {
     }
 };
 // Works -----------------------------------------------------------------------------------------------------------------------
+/*******************************************************************************************************************************/
+/*******************************************************************************************************************************/
+/*******************************************************************************************************************************/
+/*******************************************************************************************************************************/
+/********************************************************* LOGIN ***************************************************************/
+
+// Handle Login Info 
+app.post('/login', async (req, res) => {
+    const {Username, Password} = req.body;
+
+    if (!Username || !Password) {
+        return res.status(400).json({error: 'All fields are required.'})
+
+    }
+
+    try {
+        const sql = 'CALL sp_login(?)'
+        const [rows] = await db.query(sql, [Username]);
+
+        if (rows.length === 0) {
+            return res.status(401).json({error: 'Invalid username or password.'})
+
+        }
+        const user = rows[0][0];
+
+        const match = Password === user.Password;
+
+        if (!match) {
+            return res.status(401).json({error: 'Invalid username or password.'});
+        }
+
+        return res.json({message: 'Login successful!'})
+    } catch (error) {
+        console.error('Error during login:', error);
+        return res.status(500).json({error: 'Internal server error'});
+    }
+});
+
+
 
 /*******************************************************************************************************************************/
 /*******************************************************************************************************************************/
