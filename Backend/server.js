@@ -6,11 +6,12 @@
 // Express
 const express = require('express');
 const app = express(); 
-const PORT = process.env.PORT || 3000; //separate from mysql port
+const PORT = 3000; //separate from mysql port
 //const HOST = '0.0.0.0'; // comment this out this when not deployed
 const path = require('path'); 
 const fs = require('fs'); 
 
+const bcrypt = require('bcrypt')
 const cors = require('cors');
 app.use(cors( {credentials: true, origin: "*"}));
 app.use(express.json());
