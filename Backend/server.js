@@ -11,7 +11,6 @@ const PORT = 3000; //separate from mysql port
 const path = require('path'); 
 const fs = require('fs'); 
 
-const bcrypt = require('bcrypt')
 const cors = require('cors');
 app.use(cors( {credentials: true, origin: "*"}));
 app.use(express.json());
