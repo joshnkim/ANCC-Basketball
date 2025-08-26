@@ -4,10 +4,9 @@ import path from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
-  root: path.resolve(__dirname, 'ANC'), // frontend folder
   plugins: [react()],
   build: {
-    outDir: path.resolve(__dirname, 'dist'), // output folder for deployment
+    outDir: path.resolve(__dirname, 'dist'), // still output to dist folder
     emptyOutDir: true, // clean before build
   },
 })
