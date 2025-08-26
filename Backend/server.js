@@ -237,9 +237,10 @@ app.post('/players', async (req, res) => {
         }
 
         const sql = 'CALL sp_createPlayer(?, ?, ?)';
-        await db.query(sql, [PlayerName, Gender, PlayerNo || null]);
+        const [rows] = await db.query(sql, [PlayerName, Gender, PlayerNo || null]);
+        const playerID = rows[0][0].PlayerID;
 
-        res.status(201).json({message: 'Player created successfully.'});
+        res.status(201).json({message: 'Player created successfully.', PlayerID: playerID,  PlayerName });
 
     } catch (err) {
         console.error('Error creating player:', err);
@@ -248,6 +249,27 @@ app.post('/players', async (req, res) => {
 });
 // Works -----------------------------------------------------------------------------------------------------------------------
 
+// Insert Player into Team -----------------------------------------------------------------------------------------------------
+app.post('/playerteams', async (req, res) => {
+    try {
+        const {TeamID, PlayerID, PTYear} = req.body; 
+
+        // Validation
+        if (!TeamID || !PlayerID || !PTYear) {
+            return res.status(400).json({Message: 'Missing required fields: TeamID, PlayerID, or PTYear'});
+        }
+
+        const sql = 'CALL sp_insertPlayerintoTeam(?, ?, ?)';
+        await db.query(sql, [TeamID, PlayerID, PTYear]);
+
+        res.status(201).json({message: 'Player inserted into team successfully.'});
+
+    } catch (err) {
+        console.error('Error creating player:', err);
+        res.status(500).json({message: 'Internal server error.'});
+    }
+});
+// Works -----------------------------------------------------------------------------------------------------------------------
 
 
 // Create New Team -------------------------------------------------------------------------------------------------------------
@@ -379,6 +401,8 @@ app.post('/stats', async (req, res) => {
 });
 
 // Works -----------------------------------------------------------------------------------------------------------------------
+
+
 
 /*******************************************************************************************************************************/
 /*******************************************************************************************************************************/

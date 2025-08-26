@@ -139,7 +139,7 @@ BEGIN
         (SUM(Stats.Steals) / COUNT(Stats.GameID)) AS 'STL',
         (SUM(Stats.Fouls) / COUNT(Stats.GameID)) AS 'PF',
         (SUM(Stats.Turnovers) / COUNT(Stats.GameID)) AS 'TO',
-        ((SUM(Stats.FTM) + SUM(Stats.TwoPM) + SUM(Stats.ThreePA)) / COUNT(Stats.GameID))AS 'Total Pts'
+        ((SUM(Stats.FTM) + SUM(Stats.TwoPM) + SUM(Stats.ThreePA)) / COUNT(Stats.GameID))AS 'Pts'
         
         FROM Stats 
     LEFT JOIN Players ON Stats.PlayerID = Players.PlayerID
@@ -164,7 +164,23 @@ BEGIN
     INSERT INTO Players (PlayerName, Gender, PlayerNo)
     VALUES
         (nameInput, genderInput, playerNumInput);
+
+     SELECT LAST_INSERT_ID() AS PlayerID;
 END;
+-- -----------------------------------------------------------------------------------------------------------------------
+
+-- Insert Player into Team -----------------------------------------------------------------------------------------------
+DROP PROCEDURE IF EXISTS sp_insertPlayerintoTeam;
+CREATE PROCEDURE sp_insertPlayerintoTeam(
+    in teamIDInput INT,
+    in playerIDInput INT,
+    in ptYearInput INT
+)
+BEGIN 
+    INSERT INTO PlayerTeams (TeamID, PlayerID, PTYear)
+    VALUES 
+        (teamIDInput, playerIDInput, ptYearInput);
+END; 
 -- -----------------------------------------------------------------------------------------------------------------------
 
 -- Create a team ---------------------------------------------------------------------------------------------------------

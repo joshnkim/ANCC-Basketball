@@ -40,7 +40,7 @@ function ViewPlayerStatsPage({ backendURL }) {
 
   const columns = [
     "Name", "Number", "# Games Played", "FT%", "FG%", "3P%",
-    "REB", "AST", "STL", "PF", "TO", "Total Pts"
+    "REB", "AST", "STL", "PF", "TO", "Pts"
   ];
 
   const cellRenderer = (row, col) => {
