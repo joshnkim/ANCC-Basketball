@@ -17,7 +17,7 @@ import './App.css'
 
 
 const backendPort = 3000;
-const backendURL = `http://localhost:${backendPort}`;
+const backendURL = `backend-production-a6a83.up.railway.app`;
 // const backendURL = `http://18.117.218.170:${backendPort}`;
 function App() {
 
