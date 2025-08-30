@@ -63,7 +63,7 @@ USAGE:
 
 7. The "Create a Team" page will allow the board member to create a team for the current season. 
 
-8. The "Manage Games" page will allow the board member to create a game for the current season's schedule and either update a who is playing a game or update the winner for a specific game. 
+8. The "Manage Games" page will allow the board member to create a game for the current season's schedule and allow for the designation of the game type (regular game, semi-final, final). The board member can also update a who is playing in a game or update the winner for a specific game.
 
 9. The "Create a Stat" page will allow the board member to log the stats of every player during a game. This page will include a count for the score of each team playing as well as a counter for fouls. 
 
@@ -96,6 +96,9 @@ SCREENSHOTS:
 <img width="1150" height="728" alt="Screenshot 2025-08-29 at 7 23 15 PM" src="https://github.com/user-attachments/assets/84bab9b2-ee33-4c96-9729-d8aca28549f1" />
 
 <img width="1151" height="753" alt="Screenshot 2025-08-29 at 7 23 49 PM" src="https://github.com/user-attachments/assets/b1f2aa68-ac7e-4f38-9ddf-b801c3c252ec" />
+
+
+
 
 
 FUTURE IMPROVEMENTS: 
