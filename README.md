@@ -106,9 +106,9 @@ SCREENSHOTS:
 
 FUTURE IMPROVEMENTS: 
 - For next year's season, I am planning to add:
-      - A shot clock feature, so that the board member can easily count down the remaining time for a team's possession of the ball, instead of needing to calculate via the running game time.
-      - A foul reset feature, so that fouls can be counted per half of each game.
-      - Edit features for players, teams, games, and stats. This project was finalized to its current stage towards the end of the league, where editing players, teams, games, or stats werent necessary.
+    - A shot clock feature, so that the board member can easily count down the remaining time for a team's possession of the ball, instead of needing to calculate via the running game time.
+    - A foul reset feature, so that fouls can be counted per half of each game.
+    - Edit features for players, teams, games, and stats. This project was finalized to its current stage towards the end of the league, where editing players, teams, games, or stats werent necessary.
 
 
 ACKNOWLEDGEMENTS:
