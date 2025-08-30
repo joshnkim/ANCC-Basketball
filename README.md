@@ -23,15 +23,15 @@ FEATURES:
 
 
 TECH STACK:
-- Languages: 
-        - JavaScript
-        - SQL (MySQL)
+- Languages:
+    - JavaScript
+    - SQL (MySQL)
 - Frontend:
-        - React 
-        - CSS
-- Backend: 
-        - Node.js
-        - MySQL 
+    - React
+    - CSS
+- Backend:
+    - Node.js
+    - MySQL 
 
 
 INSTALLATION: 
