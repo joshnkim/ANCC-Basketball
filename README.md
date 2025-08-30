@@ -1,5 +1,6 @@
 ANCC BASKETBALL DATABASE 
 
+- URL: https://anccball.up.railway.app/
 - A database design, administration, and management project that allows for the viewing and management of data concerning the basketball league hosted by All Nations Community Church. 
 
 PURPOSE: 
@@ -31,21 +32,23 @@ TECH STACK:
     - CSS
 - Backend:
     - Node.js
-    - MySQL 
+    - MySQL
+- Deployment:
+    - Railway 
 
 
 INSTALLATION: 
 - Cloning the repo:
-        - git clone https://github.com/joshnkim/ANCC-Basketball.git 
-        - cd RTY 
+    - git clone https://github.com/joshnkim/ANCC-Basketball.git
+    - cd RTY 
 - Frontend setup
-        - cd ANC 
-        - npm install 
-        - npm run build
-        - npm run preview 
-- Backend setup 
-        - cd Backend
-        - node server.js 
+    - cd ANC
+    - npm install
+    - npm run build
+    - npm run preview 
+- Backend setup
+    - cd Backend
+    - node server.js 
 
 
 USAGE: 
