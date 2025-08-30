@@ -3,7 +3,9 @@ ANCC BASKETBALL DATABASE
 - A database design, administration, and management project that allows for the viewing and management of data concerning the basketball league hosted by All Nations Community Church. 
 
 PURPOSE: 
-Every year, our church hosts a basketball league/tournament, and each year, stats are recorded for each player and team by pen and paper. I saw this as a inconvenience that could be improved upon through the use of a database. This database allows for a better viewing experience for the players who want to see their stats per game, but also to see their overall progress throughout the season, and also a better data recording experience for the board members who keep records of each player and game. 
+- Every year, our church hosts a basketball league/tournament, and each year, stats are recorded for each player and team by pen and paper. I saw this as a inconvenience that could be improved upon through
+  the use of a database. This database allows for a better viewing experience for the players who want to see their stats per game, but also to see their overall progress throughout the season, and also a
+  better data recording experience for the board members who keep records of each player and game. 
 
 
 FEATURES: 
